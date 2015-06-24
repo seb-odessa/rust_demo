@@ -14,21 +14,15 @@ pub struct OneArg(i32);
 pub struct TwoArgs(i32, i32);
 
 impl FunArgs for Default {
-    ///
     /// Returns Zero
-    ///
     fn exec(&self) -> i32 { 0 }
 }
-impl FunArgs for OneArg {
-    ///
-    /// Returns the contained item
-    ///
+impl FunArgs for OneArg {    
+    /// Returns the contained item    
     fn exec(&self) -> i32 { self.0 }
 }
 impl FunArgs for TwoArgs {
-    ///
     /// Returns the sum of the contained item
-    ///
     fn exec(&self) -> i32 { self.0 + self.1 }
 }
 
