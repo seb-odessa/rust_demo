@@ -32,9 +32,10 @@ impl FunArgs for TwoArgs {
     fn exec(&self) -> i32 { self.0 + self.1 }
 }
 
-/// fn calculate<T: FunArgs> (arg: T) -> i32 
-/// executes overloaded function for each passed Item with FunArgs trait
-/// Returns: i32
+/// fn calculate < T: FunArgs > (arg: T) -> i32 
+///
+/// executes overloaded function for each passed Item with FunArgs trait.
+/// Returns i32.
 ///
 /// # Examples
 ///
