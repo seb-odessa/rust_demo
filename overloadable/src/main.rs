@@ -1,49 +1,75 @@
+//! This is Overloadable module
 
-//! Tools for dealing with universes (this is a doc comment, and is shown on
-//! the crate index page. The ! makes it apply to the parent of the comment,
-//! rather than what follows)
-
-/// The Overloadable Trait
-trait Overloadable {
-    /// one method only
-    fn answer(&self) -> i32;
+/// The FunArgs trait contains only <B>exec</B> function
+pub trait FunArgs {
+    /// executes calculation for the passed item
+    fn exec(&self) -> i32;
 }
 
-/// Default Type. The value is 0.
-struct Default;
+/// Default Type.
+pub struct Default;
 /// OneArg Type. Contains tuple with one value.
-struct OneArg(i32);
+pub struct OneArg(i32);
 /// TwoArg Type. Contains tuple with two values.
-struct TwoArgs(i32, i32);
+pub struct TwoArgs(i32, i32);
 
-impl Overloadable for Default {
-    /// Returns zero
-    fn answer(&self) -> i32 { 0 }
+impl FunArgs for Default {
+    ///
+    /// Returns Zero
+    ///
+    fn exec(&self) -> i32 { 0 }
 }
-impl Overloadable for OneArg {
-    /// Returns value
-    fn answer(&self) -> i32 { self.0 }
+impl FunArgs for OneArg {
+    ///
+    /// Returns the contained item
+    ///
+    fn exec(&self) -> i32 { self.0 }
 }
-impl Overloadable for TwoArgs {
-    /// Return the sum of two items of the tuple
-    fn answer(&self) -> i32 { self.0 + self.1 }
+impl FunArgs for TwoArgs {
+    ///
+    /// Returns the sum of the contained item
+    ///
+    fn exec(&self) -> i32 { self.0 + self.1 }
 }
 
-
-/// fn calculate<T: Overloadable> (arg: T) -> i32 
-/// executes overloaded function for each passed Overloadable Item
+/// fn calculate<T: FunArgs> (arg: T) -> i32 
+/// executes overloaded function for each passed Item with FunArgs trait
+/// Returns: i32
+///
+/// # Examples
+///
 /// ```
-///    println!("{}", calculate(Default)); 	// 0
-///    println!("{}", calculate(OneArg(1)));	// 1
-///    println!("{}", calculate(TwoArgs(2, 3)));// 5
+///    println!("{}", calculate(Default));          // 0
+///    println!("{}", calculate(OneArg(1)));        // 1
+///    println!("{}", calculate(TwoArgs(2, 3)));    // 5
 /// ```
-fn calculate<T: Overloadable> (arg: T) -> i32 {
-    arg.answer()
+pub fn calculate<T: FunArgs> (arg: T) -> i32 {
+    arg.exec()
 }
 
 
-/// Main function
-fn main() {
+#[cfg(test)]
+pub mod test_calculate {
+    #[test]
+    pub fn default()
+    {        
+        assert_eq!(super::calculate(super::Default), 0);
+    }
+    #[test]
+    pub fn one_arg()
+    {
+        assert_eq!(super::calculate(super::OneArg(1)), 1);
+    }
+    #[test]
+    pub fn two_args()
+    {
+        assert_eq!(super::calculate(super::TwoArgs(2,3)), 5);
+    }
+}
+
+
+/// The Main function
+pub fn main() {
     println!("{}", calculate(Default));
     println!("{}", calculate(OneArg(1)));
     println!("{}", calculate(TwoArgs(2, 3)));
