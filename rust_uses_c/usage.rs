@@ -1,4 +1,4 @@
-use std::old_io;
+extern crate libc;
 
 fn main() {
     #[link(name="clang_add", kind="dylib")]

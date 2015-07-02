@@ -1,9 +1,9 @@
-all:run
+all:lib obj bin run
 
-lib:rust_add.rs
+lib:
 	rustc rust_add.rs
 
-obj:usage.o
+obj:
 	cc -c usage.c -o usage.o
 
 bin:
