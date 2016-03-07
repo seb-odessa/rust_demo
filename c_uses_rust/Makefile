@@ -1,4 +1,4 @@
-all:run
+all:lib obj bin run
 
 lib:rust_add.rs
 	rustc rust_add.rs

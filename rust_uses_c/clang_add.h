@@ -1,7 +1,2 @@
-
-#ifndef TREBLE_H
-#define TREBLE_H
-
+#pragma once
 extern int add(int lhv, int rhv);
-
-#endif

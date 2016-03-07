@@ -1,16 +1,15 @@
+all: obj lib rustc run
+
 obj:clang_add.c
 	cc -c clang_add.c -o clang_add.o
 
 lib:clang_add.o
 	cc -shared -fPIC clang_add.o -o libclang_add.so
 
-cbin:
-	cc -o usage usage.c libclang_add.so
+rustc:
+	rustc usage.rs -L .
 
-rbin:
-	rustc usage.rs
-
-crun:
+run:
 	LD_LIBRARY_PATH=. ./usage
 
 clean:
