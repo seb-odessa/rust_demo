@@ -1,0 +1,6 @@
+[package]
+name = "demo_doc"
+version = "0.1.0"
+authors = ["seb <seb@ukr.net>"]
+
+[dependencies]
